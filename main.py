@@ -47,7 +47,15 @@ def agregar_paciente() -> None:
         prevision = ""
         print("Opcion no valida")
         return
+
+    try:
+        nuevo_paciente = Paciente(rut, nombre, edad, prevision)
+    except (ValueError, TypeError) as e:
+        print(f"Error al crear el paciente: {e}")
+        return
+    
     pacientes.append(Paciente(rut, nombre, edad, prevision))
+    print("Paciente agregado exitosamente.")
 
 def imprimir_pacientes() -> None:
     for paciente in pacientes:
@@ -69,11 +77,19 @@ def imprimir_paciente() -> None:
     else:
         print("Paciente no encontrado.")
 
+def confirmar(mensaje: str) -> bool:
+    while True:
+        resp = input(mensaje + " (si/no): ") .strip().lower()
+        if resp in ("si", "no"):
+            return resp == "si"
+        print("Respuesta no válida. Por favor, ingrese 'si' o 'no'.")
+
 def eliminar_paciente() -> None:
     paciente=buscar_paciente()
     if paciente:
-        pacientes.remove(paciente)
-        print("Paciente eliminado.")
+        if confirmar(f"¿Está seguro que desea eliminar al paciente {paciente.nombre}?"):
+            pacientes.remove(paciente)
+            print("Paciente eliminado.")
     else:
         print("Paciente no encontrado.")
 
