@@ -41,3 +41,9 @@ Guarda los cambios cargados en el *Staging Area* dentro del historial del reposi
 ---
 ### `git push origin main`
 Sube la rama actua main al repositorio en Github, se suben el proyecto local y se sincroniza.
+
+### `git pull origin main`
+Actualiza lo avanzado en el Hithub
+
+### `git remove -v`
+Para ver cual es la URL donde esta el repositorio en la nube. (Al que esta conectado)
